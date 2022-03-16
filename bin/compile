@@ -23,7 +23,9 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 CUR_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
 
-ls $BUILD_DIR
+cat $BUILD_DIR/nginx-compile.options
+
+
 mkdir -p "$BUILD_DIR" "$CACHE_DIR"
 
 if [[ ! -e "${BUILD_DIR}/www" ]]; then
@@ -82,7 +84,7 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
   echo "-----> Compiling static nginx binary"
   mkdir "$BUILD_DIR/nginx"
 
-  if [[ -f "$BUILD_DIR/nginx-compile.options" ]]; then
+  if [ -f "$BUILD_DIR/nginx-compile.options" ]; then
     echo "Using custom NGINX compile options"
     NGINX_COMPILE_ARGS="$(cat $BUILD_DIR/nginx-compile.options)"
   else
