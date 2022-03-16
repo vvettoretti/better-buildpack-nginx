@@ -89,9 +89,7 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     NGINX_COMPILE_ARGS="$(cat $CUR_DIR/conf/nginx-compile.options)"
   fi
   
-  # NGINX_COMPILE_ARGS = ${NGINX_COMPILE_ARGS//$'\n'/ } # replace new lines with space
-
-  supress ./configure \
+  suppress ./configure \
     --with-cpu-opt=generic \
     --prefix="$BUILD_DIR/nginx" \
     --with-pcre=../pcre-${PCRE_VERSION} \
