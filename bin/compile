@@ -23,7 +23,6 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 CUR_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
 
-cat "$CACHE_DIR/conf/nginx-compile.options"
 
 mkdir -p "$BUILD_DIR" "$CACHE_DIR"
 
@@ -110,7 +109,6 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
   rm -rf "${CACHE_DIR:?}/bin" && mkdir -p "$CACHE_DIR/bin/"
   # shellcheck disable=SC2086
   cp -r $BUILD_DIR/nginx/* "$CACHE_DIR/bin/"
-
 else
   echo "-----> Reusing nginx binary from cache"
   mkdir -p "$BUILD_DIR/nginx"
