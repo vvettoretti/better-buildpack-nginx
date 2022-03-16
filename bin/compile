@@ -77,7 +77,7 @@ mkdir -p "$BUILD_DIR/sigil"
 cp -r sigil "$BUILD_DIR/sigil/"
 
 cd "nginx-${NGINX_VERSION}"
-if [[ ! -f "${CACHE_DIR}/bin/nginx" || cmp -s "$BUILD_DIR/nginx-compile.options" "${CACHE_DIR}/conf/nginx-compile.options" ]]; then
+if [[ ! -f "${CACHE_DIR}/bin/nginx"] || [cmp -s "$BUILD_DIR/nginx-compile.options" "${CACHE_DIR}/conf/nginx-compile.options" ]]; then
   echo "-----> Compiling static nginx binary"
   mkdir "$BUILD_DIR/nginx"
 
