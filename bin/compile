@@ -101,8 +101,8 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     --sbin-path=. \
     --pid-path=./nginx.pid \
     --conf-path=./nginx.conf \
-    --with-ld-opt="-static" \
-    --with-cc-opt="-O2 -static -static-libgcc" \
+    --with-ld-opt="--static" \
+    --with-cc-opt="-O2 --static --static-libgcc" \
     $NGINX_COMPILE_ARGS
     # Put here optional arguments from a text file
 
