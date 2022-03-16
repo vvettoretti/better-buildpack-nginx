@@ -77,7 +77,7 @@ mkdir -p "$BUILD_DIR/sigil"
 cp -r sigil "$BUILD_DIR/sigil/"
 
 cd "nginx-${NGINX_VERSION}"
-if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
+if [[ ! -f "${CACHE_DIR}/bin/nginx" || cmp -s "$BUILD_DIR/nginx-compile.options" "${CACHE_DIR}/conf/nginx-compile.options" ]]; then
   echo "-----> Compiling static nginx binary"
   mkdir "$BUILD_DIR/nginx"
 
@@ -93,13 +93,7 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     --with-cpu-opt=generic \
     --prefix="$BUILD_DIR/nginx" \
     --with-pcre=../pcre-${PCRE_VERSION} \
-    --sbin-path=. \
-    --pid-path=./nginx.pid \
-    --conf-path=./nginx.conf \
-    --with-ld-opt="-static" \
     --with-zlib=../zlib-${ZLIB_VERSION} \
-    --with-pcre \
-    --with-cc-opt="-O2 -static -static-libgcc" \
     $NGINX_COMPILE_ARGS
     # Put here optional arguments from a text file
 
