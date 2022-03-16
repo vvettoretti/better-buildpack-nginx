@@ -43,7 +43,6 @@ if [[ ! -e "${BUILD_DIR}/www" ]]; then
   [[ -f "${BUILD_DIR}/www/mime.types" ]] && mv "${BUILD_DIR}/www/mime.types" "${BUILD_DIR}"
   [[ -f "${BUILD_DIR}/www/CHECKS" ]] && mv "${BUILD_DIR}/www/CHECKS" "${BUILD_DIR}"
   [[ -f "${BUILD_DIR}/www/app.json" ]] && mv "${BUILD_DIR}/www/app.json" "${BUILD_DIR}"
-  [[ -f "${BUILD_DIR}/www/nginx-compile.options" ]] && mv "${BUILD_DIR}/www/nginx-compile.options" "${BUILD_DIR}"
 
   rm -rf "${CACHE_DIR}/www"
 fi
@@ -87,12 +86,12 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     NGINX_COMPILE_ARGS="$(cat $BUILD_DIR/nginx-compile.options)"
   else
     echo "Using default NGINX compile options"
-    NGINX_COMPILE_ARGS="$(cat conf/nginx-compile.options)"
+    NGINX_COMPILE_ARGS="$(cat $CUR_DIR/conf/nginx-compile.options)"
   fi
   
   # NGINX_COMPILE_ARGS = ${NGINX_COMPILE_ARGS//$'\n'/ } # replace new lines with space
 
-  ./configure \
+  supress ./configure \
     --with-cpu-opt=generic \
     --prefix="$BUILD_DIR/nginx" \
     --with-pcre=../pcre-${PCRE_VERSION} \
