@@ -102,6 +102,7 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     --with-zlib=../zlib-${ZLIB_VERSION} \
     --with-pcre \
     --with-cc-opt="-O2 -static -static-libgcc" \
+    --with-ngx_http_autoindex_module \
     $NGINX_COMPILE_ARGS
     # Put here optional arguments from a text file
 
