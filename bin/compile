@@ -11,6 +11,8 @@ SIGIL_TARBALL="sigil_${SIGIL_VERSION}_Linux_x86_64.tgz"
 ZLIB_VERSION="1.2.11"
 ZLIB_TARBALL="zlib-${ZLIB_VERSION}.tar.gz"
 
+echo "Modified builder by @vvettoretti"
+
 suppress() {
   # shellcheck disable=SC2069
   /bin/rm --force /tmp/surpress.out 2> /dev/null; "$@" 2>&1 > /tmp/surpress.out || cat /tmp/surpress.out; /bin/rm /tmp/surpress.out;
@@ -41,6 +43,8 @@ if [[ ! -e "${BUILD_DIR}/www" ]]; then
   [[ -f "${BUILD_DIR}/www/mime.types" ]] && mv "${BUILD_DIR}/www/mime.types" "${BUILD_DIR}"
   [[ -f "${BUILD_DIR}/www/CHECKS" ]] && mv "${BUILD_DIR}/www/CHECKS" "${BUILD_DIR}"
   [[ -f "${BUILD_DIR}/www/app.json" ]] && mv "${BUILD_DIR}/www/app.json" "${BUILD_DIR}"
+  [[ -f "${BUILD_DIR}/www/nginx-compile.options" ]] && mv "${BUILD_DIR}/www/nginx-compile.options" "${BUILD_DIR}"
+
   rm -rf "${CACHE_DIR}/www"
 fi
 
@@ -79,7 +83,7 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
   mkdir "$BUILD_DIR/nginx"
 
   set -f
-  if [ -f "$BUILD_DIR/nginx-compile.options"]; then
+  if [[ -f "$BUILD_DIR/nginx-compile.options"]]; then
     echo "Using custom NGINX compile options"
     NGINX_COMPILE_ARGS="$(cat $BUILD_DIR/nginx-compile.options)"
   else
