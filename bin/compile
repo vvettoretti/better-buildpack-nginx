@@ -82,7 +82,6 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
   echo "-----> Compiling static nginx binary"
   mkdir "$BUILD_DIR/nginx"
 
-  set -f
   if [[ -f "$BUILD_DIR/nginx-compile.options" ]]; then
     echo "Using custom NGINX compile options"
     NGINX_COMPILE_ARGS="$(cat $BUILD_DIR/nginx-compile.options)"
