@@ -1,6 +1,6 @@
 # heroku-buildpack-nginx
 
-This is the official dokku buildpack for static websites, powered by nginx.
+This is NOT the official dokku buildpack for static websites, powered by nginx.
 
 ## Usage
 
@@ -10,7 +10,7 @@ All static files that you want to serve should be in the root directory of your 
 
 To trigger detection of this buildpack you need to add a dotfile:
 
-Add an *empty* file called `.static` to your root directory of your web project (regardless if you use a custom value for NGINX_ROOT)
+Add an _empty_ file called `.static` to your root directory of your web project (regardless if you use a custom value for NGINX_ROOT)
 
 ### Heroku
 
