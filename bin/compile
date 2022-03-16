@@ -98,8 +98,13 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     --prefix="$BUILD_DIR/nginx" \
     --with-pcre=../pcre-${PCRE_VERSION} \
     --with-zlib=../zlib-${ZLIB_VERSION} \
+    --sbin-path=. \
+    --pid-path=./nginx.pid \
+    --conf-path=./nginx.conf \
+    --with-ld-opt="-static" \
+    --with-pcre \
+    --with-cc-opt="-O2 -static -static-libgcc" \
     $NGINX_COMPILE_ARGS
-    # Put here optional arguments from a text file
 
 
   sed -i "/CFLAGS/s/ \-O //g" objs/Makefile
