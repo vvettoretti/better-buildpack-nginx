@@ -97,6 +97,12 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     --prefix="$BUILD_DIR/nginx" \
     --with-pcre=../pcre-${PCRE_VERSION} \
     --with-zlib=../zlib-${ZLIB_VERSION} \
+    --with-cpu-opt=generic \
+    --sbin-path=. \
+    --pid-path=./nginx.pid \
+    --conf-path=./nginx.conf \
+    --with-ld-opt="-static" \
+    --with-cc-opt="-O2 -static -static-libgcc" \
     $NGINX_COMPILE_ARGS
     # Put here optional arguments from a text file
 
