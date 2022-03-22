@@ -32,11 +32,11 @@ else
 fi
 
 if cmp -s "$CACHE_DIR/www/nginx-compile.options" "$BUILD_DIR/nginx-compile.options"; then
-    echo "Detected compile config change - rebuilding NGINX"
-    NGINX_REBUILD=true
-else
     echo "Will not rebuild NGINX"
     NGINX_REBUILD=false
+else
+    echo "Detected compile config change - rebuilding NGINX"
+    NGINX_REBUILD=true
 fi
 
 mkdir -p "$BUILD_DIR" "$CACHE_DIR"
