@@ -31,6 +31,13 @@ else
     NGINX_COMPILE_ARGS="$(cat $CUR_DIR/conf/nginx-compile.options)"
 fi
 
+if [ cmp -s "$CACHE_DIR/www/nginx-compile.options" "$BUILD_DIR/nginx-compile.options" ]; then
+    echo "Detected compile config change - rebuilding NGINX"
+    NGINX_REBUILD=true
+else
+    NGINX_REBUILD=false
+fi
+
 mkdir -p "$BUILD_DIR" "$CACHE_DIR"
 
 if [[ ! -e "${BUILD_DIR}/www" ]]; then
@@ -85,7 +92,7 @@ mkdir -p "$BUILD_DIR/sigil"
 cp -r sigil "$BUILD_DIR/sigil/"
 
 cd "nginx-${NGINX_VERSION}"
-if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
+if [[ ! -f "${CACHE_DIR}/bin/nginx" || NGINX_REBUILD ]]; then
   echo "-----> Compiling static nginx binary"
   mkdir "$BUILD_DIR/nginx"
 
