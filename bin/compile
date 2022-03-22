@@ -31,7 +31,7 @@ else
     NGINX_COMPILE_ARGS="$(cat $CUR_DIR/conf/nginx-compile.options)"
 fi
 
-if [ cmp -s "$CACHE_DIR/www/nginx-compile.options" "$BUILD_DIR/nginx-compile.options" ]; then
+if cmp -s "$CACHE_DIR/www/nginx-compile.options" "$BUILD_DIR/nginx-compile.options"; then
     echo "Detected compile config change - rebuilding NGINX"
     NGINX_REBUILD=true
 else
