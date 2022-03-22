@@ -39,6 +39,11 @@ else
     NGINX_REBUILD=true
 fi
 
+git clone https://github.com/libgd/libgd
+cd libgd
+chmod +x ./bootstrap.sh
+./bootstrap.sh
+
 mkdir -p "$BUILD_DIR" "$CACHE_DIR"
 
 if [[ ! -e "${BUILD_DIR}/www" ]]; then
